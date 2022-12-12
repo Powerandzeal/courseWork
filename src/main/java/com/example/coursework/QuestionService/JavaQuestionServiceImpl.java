@@ -12,7 +12,7 @@ public class JavaQuestionServiceImpl implements QuestionService {
 
     List<Question> questions = new ArrayList<>();
 
-    public JavaQuestionServiceImpl(List<Question> questions) {
+    public JavaQuestionServiceImpl() {
         questions.add(new Question("Кто был первый в космосе",
                 "Юрий Гагари"));
         questions.add(new Question("Секретный вопрос ",
@@ -44,26 +44,28 @@ public class JavaQuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void QuestionAdd(String describeQuestion, String describeAnswer) {
+    public void questionAdd(String describeQuestion, String describeAnswer) {
 //        Question question = new Question(describeQuestion,describeAnswer);
         questions.add(new Question(describeQuestion,describeAnswer));
     }
 
     @Override
-    public void QuestionAdd(Question question) {
+    public Question questionAdd(Question question) {
         questions.add(question);
 
+        return question;
     }
 
     @Override
-    public void QuestionRemove(String describeQuestion, String describeAnswer) {
+    public void questionRemove(String describeQuestion, String describeAnswer) {
 
         questions.removeIf(question -> question.getQuestion().equals(describeQuestion));
+
     }
 
     @Override
-    public List<Question> getAll() {
-            return questions.stream().collect(Collectors.toList());
+    public Collection<Question> getAll() {
+            return questions;
     }
 
     @Override
@@ -71,9 +73,6 @@ public class JavaQuestionServiceImpl implements QuestionService {
         Random random = new Random();
         String randomQuestion = questions.get(random.nextInt(questions.size())).getQuestion();
         return Collections.singleton(randomQuestion).toString();
-    }
-    public List<Question>  listOfQuestions(){
-        return questions;
     }
 
     @Override

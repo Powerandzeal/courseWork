@@ -27,7 +27,7 @@ public class JavaQuestionController {
     public String addQuestion
             (@RequestParam("Question") String question,
              @RequestParam("Answer") String answer) {
-        javaQuestionServiceImpl.QuestionAdd(question,answer);
+        javaQuestionServiceImpl.questionAdd(question,answer);
         return "Был добавлен вопрос " +question+" и ответ " + answer;
     }
 
@@ -35,19 +35,15 @@ public class JavaQuestionController {
     public String removeQuestion
             (@RequestParam("Question") String question,
              @RequestParam("Answer") String answer) {
-        javaQuestionServiceImpl.QuestionRemove(question,answer);
+        javaQuestionServiceImpl.questionRemove(question,answer);
         return "Удален вопрос " +question+" и ответ " + answer;
     }
 
     @GetMapping("/exam/java/")
     public List<Question> getAllQuestions() {
-        return this.javaQuestionServiceImpl.getAll();
+        return (List<Question>) this.javaQuestionServiceImpl.getAll();
     }
 
-    @GetMapping("/exam/java/createList")
-    public List<Question> createListOfQuestions() {
-        return this.javaQuestionServiceImpl.listOfQuestions();
-    }
     @GetMapping("/exam/java/getRandomQuestion")
     public String getRandomQuestion() {
         return this.javaQuestionServiceImpl.getRandomQuestion();

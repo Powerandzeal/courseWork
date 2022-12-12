@@ -5,11 +5,11 @@ import com.example.coursework.Question.Question;
 import java.util.Collection;
 
 public interface QuestionService {
-    void QuestionAdd(String question,String answer);
+    void questionAdd(String question, String answer);
 
-    void QuestionAdd(Question question);
+    Question questionAdd(Question question);
 
-    void QuestionRemove (String  question,String answer);
+    void questionRemove(String  question, String answer);
 
 
     Collection<Question> getAll();
