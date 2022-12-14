@@ -44,10 +44,17 @@ public class JavaQuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void questionAdd(String describeQuestion, String describeAnswer) {
-//        Question question = new Question(describeQuestion,describeAnswer);
-        questions.add(new Question(describeQuestion,describeAnswer));
+    public Question questionAdd(String describeQuestion, String describeAnswer) {
+        Question question = new Question(describeQuestion,describeAnswer);
+        questions.add(question);
+        return question;
     }
+
+//    @Override
+//    public void questionAdd(String describeQuestion, String describeAnswer) {
+////        Question question = new Question(describeQuestion,describeAnswer);
+//        questions.add(new Question(describeQuestion,describeAnswer));
+//    }
 
     @Override
     public Question questionAdd(Question question) {
@@ -63,6 +70,8 @@ public class JavaQuestionServiceImpl implements QuestionService {
 
     }
 
+
+
     @Override
     public Collection<Question> getAll() {
             return questions;
@@ -74,6 +83,11 @@ public class JavaQuestionServiceImpl implements QuestionService {
         String randomQuestion = questions.get(random.nextInt(questions.size())).getQuestion();
         return Collections.singleton(randomQuestion).toString();
     }
+
+//    public String getRandomQuestion2() {
+//        Random random = new Random();
+//        return questions.get(random.nextInt(questions.size())).getQuestion();
+//    }
 
     @Override
     public String toString() {

@@ -5,7 +5,7 @@ import com.example.coursework.Question.Question;
 import java.util.Collection;
 
 public interface QuestionService {
-    void questionAdd(String question, String answer);
+    Question questionAdd(String question, String answer);
 
     Question questionAdd(Question question);
 
