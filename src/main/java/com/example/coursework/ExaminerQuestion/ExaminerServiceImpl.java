@@ -4,35 +4,32 @@ import com.example.coursework.Exceptions.QuestionException;
 import com.example.coursework.Question.Question;
 import com.example.coursework.QuestionService.JavaQuestionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
 
+    protected List<Question> questionsForExam;
+    protected JavaQuestionServiceImpl javaQuestionService;
 
-    JavaQuestionServiceImpl javaQuestionService;
-@Autowired
+    @Autowired
     public ExaminerServiceImpl(JavaQuestionServiceImpl javaQuestionService) {
         this.javaQuestionService = javaQuestionService;
     }
 
     @Override
-    public Collection<String> getQuestions(int amount) throws QuestionException {
+    public List<Question> getQuestions(int amount) throws QuestionException {
 
-        Collection<String> questionsForExam= new ArrayList<>();
-        if(amount>javaQuestionService.getAll().size()) {
+        questionsForExam = new ArrayList<>();
+
+        if (amount > javaQuestionService.getAll().size()) {
             throw new QuestionException("Введеено значение больше чем колличество вопросов");
-
-
-        }else {
+        } else {
             for (int i = 0; i < amount; ) {
-                String randomQuestion = javaQuestionService.getRandomQuestion();
+                Question randomQuestion = javaQuestionService.getRandomQuestion();
 
                 if (!questionsForExam.contains(randomQuestion)) {
                     questionsForExam.add(randomQuestion);

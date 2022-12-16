@@ -11,7 +11,6 @@ public class Question {
     public Question(String describeQuestion, String describeAnswer) {
         this.describeQuestion = describeQuestion;
         this.describeAnswer = describeAnswer;
-//        id++;
     }
 
     public String getQuestion() {
@@ -45,10 +44,10 @@ public class Question {
     }
 
     @Override
-    public String  toString() {
+    public String toString() {
         return "Question{" +
                 "question='" + describeQuestion + '\'' +
                 ", answer='" + describeAnswer + '\'' +
-                '}'+"\n";
+                '}' + "\n";
     }
 }

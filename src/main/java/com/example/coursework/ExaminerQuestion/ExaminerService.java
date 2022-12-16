@@ -1,10 +1,10 @@
 package com.example.coursework.ExaminerQuestion;
 
 import com.example.coursework.Exceptions.QuestionException;
+import com.example.coursework.Question.Question;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface ExaminerService {
-
-    Collection<String> getQuestions(int amount) throws QuestionException;
+    List<Question> getQuestions(int amount) throws QuestionException;
 }

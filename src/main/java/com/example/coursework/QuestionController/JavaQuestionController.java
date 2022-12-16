@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/exam")
 public class JavaQuestionController {
     private final JavaQuestionServiceImpl javaQuestionServiceImpl;
 
@@ -18,36 +18,30 @@ public class JavaQuestionController {
         this.javaQuestionServiceImpl = javaQuestionServiceImpl;
     }
 
-    @GetMapping("/exam")
-    public String greeting() {
-        return "Привет студент, удачи на экзамене";
-    }
-
-    @GetMapping("/exam/java/add")
+    @GetMapping("/java/add")
     public String addQuestion
             (@RequestParam("Question") String question,
              @RequestParam("Answer") String answer) {
-        javaQuestionServiceImpl.questionAdd(question,answer);
-        return "Был добавлен вопрос " +question+" и ответ " + answer;
+        javaQuestionServiceImpl.add(question, answer);
+        return "Был добавлен вопрос " + question + " и ответ " + answer;
     }
 
-    @GetMapping("/exam/java/remove")
-    public String removeQuestion
+    @GetMapping("/java/remove")
+    public Question removeQuestion
             (@RequestParam("Question") String question,
              @RequestParam("Answer") String answer) {
-        javaQuestionServiceImpl.questionRemove(question,answer);
-        return "Удален вопрос " +question+" и ответ " + answer;
+        Question tmp = new Question(question, answer);
+        return javaQuestionServiceImpl.remove(tmp);
     }
 
-    @GetMapping("/exam/java/")
+    @GetMapping("/java")
     public List<Question> getAllQuestions() {
         return (List<Question>) this.javaQuestionServiceImpl.getAll();
     }
 
-    @GetMapping("/exam/java/getRandomQuestion")
-    public String getRandomQuestion() {
+    @GetMapping("/java/getRandomQuestion")
+    public Question getRandomQuestion() {
         return this.javaQuestionServiceImpl.getRandomQuestion();
     }
-
 
 }
