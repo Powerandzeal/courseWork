@@ -31,11 +31,10 @@ class ExaminerServiceImplTest {
     ExaminerServiceImpl examinerService;
 
 
-
     @BeforeEach
     void setUp() {
         examinerService = new ExaminerServiceImpl(javaQuestionService);
-        Set<Question> tmp = new HashSet<>(List.of(
+        List<Question> tmp = new ArrayList<>(List.of(
                 new Question("Test1", "Test1"),
                 new Question("Test2", "Test2"),
                 new Question("Test3", "Test4")
@@ -46,14 +45,17 @@ class ExaminerServiceImplTest {
     }
 
     @Test
-    void shouldGetQuestions1() throws QuestionException {
-        assertEquals(examinerService.getQuestions(1),
-                new ArrayList<>(Set.of(new Question("question1", "answer1"))));
+    void shouldGetTwoQuestions() throws QuestionException {
+        assertEquals(examinerService.getQuestions(2),
+                new ArrayList<>(Set.of(
+                        new Question("Test1", "Test1"),
+                        new Question("Test2", "Test2")
+                )));
 
     }
 
     @Test
-    void shouldGetQuestions2() throws QuestionException {
+    void shouldGetQuestions() throws QuestionException {
         Collection<Question> list = examinerService.getQuestions(1);
 
         assertEquals(list.size(), examinerService.questionsForExam.size());
